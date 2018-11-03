@@ -34,9 +34,12 @@ pB.start(duty_cycle)
 
 # Change speed of both motors according to duty_cycle.
 # NOTE: Duty cycle is value between 0 and 100.
-def change_duty_cycles():
-    pA.ChangeDutyCycle(duty_cycle)
-    pB.ChangeDutyCycle(duty_cycle)
+# NOTE: to stop robot, simply call function with parameter 0.
+def change_duty_cycles(newdc):
+    pA.ChangeDutyCycle(newdc)
+    pB.ChangeDutyCycle(newdc)
+    global duty_cycle
+    duty_cycle = newdc
 
 
 # Set both motors to go forward.
@@ -45,6 +48,14 @@ def motors_forward():
     GPIO.output(controlA[1], 1)
     GPIO.output(controlB[0], 0)
     GPIO.output(controlB[1], 1)
+
+
+# Set both motors to reverse.
+def motors_reverse():
+    GPIO.output(controlA[0], 1)
+    GPIO.output(controlA[1], 0)
+    GPIO.output(controlB[0], 1)
+    GPIO.output(controlB[1], 0)
 
 
 # Slow down speed of motor A by 50% to turn left while driving.
@@ -61,5 +72,49 @@ def turn_right(time):
     pB.ChangeDutyCycle(0.5 * duty_cycle)
     sleep(time)
     pB.ChangeDutyCycle(duty_cycle)
+
+
+# Turn robot in place clockwise.
+def turn_clockwise(time):
+    # Ensure duty cycle is 0 at beginning of function.
+    global duty_cycle
+    if duty_cycle != 0:
+        duty_cycle = 0
+        change_duty_cycles(0)
+
+    # Set motor A forward and motor B reverse.
+    GPIO.output(controlA[0], 0)
+    GPIO.output(controlA[1], 1)
+    GPIO.output(controlB[0], 1)
+    GPIO.output(controlB[1], 0)
+
+    change_duty_cycles(25)
+    sleep(time)
+    change_duty_cycles(0)
+
+
+# Turn robot in place counter-clockwise.
+def turn_c_clockwise(time):
+    # Ensure duty cycle is 0 at beginning of function.
+    global duty_cycle
+    if duty_cycle != 0:
+        duty_cycle = 0
+        change_duty_cycles(0)
+
+    # Set motor A reverse and motor B forward.
+    GPIO.output(controlA[0], 1)
+    GPIO.output(controlA[1], 0)
+    GPIO.output(controlB[0], 0)
+    GPIO.output(controlB[1], 1)
+
+    change_duty_cycles(25)
+    sleep(time)
+    change_duty_cycles(0)
+
+
+
+
+
+
 
 
