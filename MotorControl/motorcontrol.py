@@ -119,5 +119,9 @@ while True:
         motors_reverse()
     elif 0.1 <= data < 2.9:
         turn_right()
-    else
+    elif 2.9 <= data < 3.12:
         motors_forward()
+    else:
+        change_duty_cycles(0)
+
+    
