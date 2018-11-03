@@ -60,23 +60,19 @@ def motors_reverse():
 
 # Slow down speed of motor A by 50% to turn left while driving.
 # NOTE: pass time in seconds.
-def turn_left(time):
+def turn_left():
     pA.ChangeDutyCycle(0.5 * duty_cycle)
-    sleep(time)
-    pA.ChangeDutyCycle(duty_cycle)
 
 
 # Slow down speed of motor B by 50% to turn right while driving.
 # NOTE: pass time in seconds.
-def turn_right(time):
+def turn_right():
     pB.ChangeDutyCycle(0.5 * duty_cycle)
-    sleep(time)
-    pB.ChangeDutyCycle(duty_cycle)
 
 
 # NOTE: for below two functions, may need to sleep within if-statement to ensure robot has come to a complete stop.
 # Turn robot in place clockwise.
-def turn_clockwise(time):
+def turn_clockwise():
     # Ensure duty cycle is 0 at beginning of function.
     global duty_cycle
     if duty_cycle != 0:
@@ -90,12 +86,10 @@ def turn_clockwise(time):
     GPIO.output(controlB[1], 0)
 
     change_duty_cycles(25)
-    sleep(time)
-    change_duty_cycles(0)
 
 
 # Turn robot in place counter-clockwise.
-def turn_c_clockwise(time):
+def turn_c_clockwise():
     # Ensure duty cycle is 0 at beginning of function.
     global duty_cycle
     if duty_cycle != 0:
@@ -109,8 +103,6 @@ def turn_c_clockwise(time):
     GPIO.output(controlB[1], 1)
 
     change_duty_cycles(25)
-    sleep(time)
-    change_duty_cycles(0)
 
 
 # MAIN RUNNING LOOP BELOW.
@@ -118,3 +110,14 @@ while True:
 
     with open("data.txt") as myfile:
         data = myfile.read()
+
+    data = float(data)
+
+    if -3.1 < data < -0.1:
+        turn_left()
+    elif -0.1 <= data < 0.1:
+        motors_reverse()
+    elif 0.1 <= data < 2.9:
+        turn_right()
+    else
+        motors_forward()
