@@ -106,6 +106,10 @@ def turn_c_clockwise():
 
 
 # MAIN RUNNING LOOP BELOW.
+
+# Initialize duty cycle to max DC value.
+change_duty_cycles(100)
+
 while True:
 
     with open("data.txt") as myfile:
@@ -124,4 +128,3 @@ while True:
     else:
         change_duty_cycles(0)
 
-    
