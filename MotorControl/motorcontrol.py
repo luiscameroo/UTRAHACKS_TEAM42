@@ -74,6 +74,7 @@ def turn_right(time):
     pB.ChangeDutyCycle(duty_cycle)
 
 
+# NOTE: for below two functions, may need to sleep within if-statement to ensure robot has come to a complete stop.
 # Turn robot in place clockwise.
 def turn_clockwise(time):
     # Ensure duty cycle is 0 at beginning of function.
@@ -112,9 +113,8 @@ def turn_c_clockwise(time):
     change_duty_cycles(0)
 
 
+# MAIN RUNNING LOOP BELOW.
+while True:
 
-
-
-
-
-
+    with open("data.txt") as myfile:
+        data = myfile.read()
