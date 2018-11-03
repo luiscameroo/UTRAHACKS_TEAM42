@@ -26,10 +26,12 @@ pB = GPIO.PWM(enB, 1000)
 pA.start(0)
 pB.start(0)
 
+# Change speed of both motors according to duty_cycle.
 def change_duty_cycles(duty_cycle):
     pA.ChangeDutyCycle(duty_cycle)
     pB.ChangeDutyCycle(duty_cycle)
 
+# Set both motors to go forward.
 def motors_forward():
     GPIO.output(controlA[0], 0)
     GPIO.output(controlA[1], 1)
