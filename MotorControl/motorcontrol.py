@@ -20,9 +20,15 @@ GPIO.setup(controlB[1], GPIO.OUT)
 GPIO.setup(enA, GPIO.OUT)
 GPIO.setup(enB, GPIO.OUT)
 
-def enable_motors():
-    GPIO.output(enA, 1)
-    GPIO.output(enB, 1)
+# Initialize PWM for enable motors A and B
+pA = GPIO.PWM(enA, 1000)
+pB = GPIO.PWM(enB, 1000)
+pA.start(0)
+pB.start(0)
+
+def change_duty_cycles(duty_cycle):
+    pA.ChangeDutyCycle(duty_cycle)
+    pB.ChangeDutyCycle(duty_cycle)
 
 def motors_forward():
     GPIO.output(controlA[0], 0)
