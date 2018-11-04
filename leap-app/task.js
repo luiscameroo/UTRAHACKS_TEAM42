@@ -23,7 +23,7 @@ leapjs.loop({enableGestures:true}, function(frame) {
         for (let i = 0; i < frame.hands.length; i++) {
             const hand = frame.hands[i];
             if (hand.valid) {
-                fs.writeFile('message.JSON', hand.roll(), (err) => {
+                fs.writeFile('message.txt', hand.roll(), (err) => {
                     if (err) throw err;
                   });    
             }        // And so on...

@@ -1,1 +1,1 @@
-Pointable [ id:2280 48.3505mmx | direction: 0.996437,-0.0842091,0.00473098 ],Pointable [ id:2281 54.5581mmx | direction: 0.941147,-0.280358,-0.188791 ],Pointable [ id:2282 62.1646mmx | direction: 0.880239,-0.363407,-0.305147 ],Pointable [ id:2284 46.8609mmx | direction: 0.783519,-0.393876,-0.480582 ]
+-2.557097541280516
